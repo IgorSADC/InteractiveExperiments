@@ -7,27 +7,28 @@ const conversionFactors = {
     velocity: 0.1,
     accelaration: 0.005
 }
+currentState = status.config; //static variable
 
 class InteractiveChargeParticle extends ChargedParticle {
     constructor(drawableVector, accelerationVector, charge = 0) {
-        console.log(drawableVector);
         super(drawableVector.offset, drawableVector.vector.copy().mult(conversionFactors.velocity), accelerationVector.vector.copy().mult(conversionFactors.accelaration), charge);
-        this.currentState = states.CONFIGURE;
         this.drawableVector = drawableVector;
         this.accelerationVector = accelerationVector;
     }
     Update() {
-        if (this.currentState == states.MOVING) {
+        if (currentState == states.MOVING) {
             super.Update();
             this.runningUpdate();
 
         } else {
             this.config();
+            this.drawableVector.Update();
+            this.accelerationVector.Update();
         }
     }
 
     Start() {
-        this.currentState = states.MOVING;
+        currentState = states.MOVING;
     }
     config() {
         this.position = this.drawableVector.offset;

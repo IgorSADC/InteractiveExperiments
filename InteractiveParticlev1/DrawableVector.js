@@ -19,10 +19,13 @@ class DrawableVector {
 
     draw() {
         //This function draws the vector and (if wanted) the text
-        this.moveOnMouse();
+        // this.moveOnMouse();
         this.drawArrow(this.offset, this.vector, this.color);
         if (this.shouldDrawText)
             this.drawMode();
+    }
+    Update() {
+        this.moveOnMouse();
     }
 
     keyPressed(keyCode) {
