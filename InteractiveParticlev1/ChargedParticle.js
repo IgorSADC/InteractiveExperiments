@@ -9,4 +9,9 @@ class ChargedParticle extends PhysicalObjects {
         ellipse(this.position.x, this.position.y, this.radius, this.radius);
     }
 
+    EletricalForce(force) {
+        let normalizedForce = force / this.charge;
+        this.ApplyForce(normalizedForce);
+    }
+
 }

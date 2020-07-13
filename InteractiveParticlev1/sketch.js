@@ -6,7 +6,7 @@ function setup() {
     createCanvas(600, 600);
 
     v = new DrawableVector(50, 0, 8, 8);
-    a = new DrawablePositionedVector(25, 25, v);
+    a = new DrawablePositionedVector(0, 0, v);
     p = new InteractiveChargeParticle(v, a, 1);
     startButton = createButton("Start");
     startButton.mousePressed(Start);
@@ -25,5 +25,4 @@ function Start() {
 
 function keyPressed() {
     v.keyPressed(keyCode);
-
 }

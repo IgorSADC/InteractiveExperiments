@@ -1,4 +1,6 @@
 class PhysicalObjects {
+    //This is a generic abstract class for objects in the physics system
+
 
     constructor(pos, vel, acc) {
         this.position = pos;
@@ -12,8 +14,8 @@ class PhysicalObjects {
         if (resetForces) this.accelaration.mult(0);
     }
 
-    ApplyForce(force) {
-        this.accelaration.add(force);
+    ApplyForce(normalizedForce) {
+        this.accelaration.add(normalizedForce);
     }
 
 }

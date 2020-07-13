@@ -19,10 +19,12 @@ class DrawableVector {
 
     draw() {
         //This function draws the vector and (if wanted) the text
-        // this.moveOnMouse();
-        this.drawArrow(this.offset, this.vector, this.color);
-        if (this.shouldDrawText)
-            this.drawMode();
+        if (this.vector.x != 0 || this.vector.y != 0) {
+            this.drawArrow(this.offset, this.vector, this.color);
+            if (this.shouldDrawText)
+                this.drawMode();
+        }
+
     }
     Update() {
         this.moveOnMouse();
@@ -107,7 +109,7 @@ class DrawableVector {
 
 class DrawablePositionedVector extends DrawableVector {
     constructor(x, y, parentDrawableVector, color = 'blue', shouldDrawText = false) {
-        //this class is a vector that can be draw on the screen easily
+        //this class is a vector that can be draw on the screen easily. This one cannot change position, only size and direction
         super(x, y, parentDrawableVector.xOff, parentDrawableVector.yOff, color, shouldDrawText);
         this.parentDrawableVector = parentDrawableVector;
         this.changingMode = changeModes.ChangeSize;
@@ -117,8 +119,11 @@ class DrawablePositionedVector extends DrawableVector {
         return;
     }
 
-    draw() {
+    keyPressed(keyCode) {
+        return;
+    }
 
+    draw() {
         super.draw();
         this.offset = this.parentDrawableVector.offset;
     }
