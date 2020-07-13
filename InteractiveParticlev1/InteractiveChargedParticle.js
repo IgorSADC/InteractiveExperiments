@@ -5,14 +5,14 @@ const states = {
 
 const conversionFactors = {
     velocity: 0.1,
-    accelaration: 0.005
+    acceleration: 0.005
 }
 currentState = status.config; //static variable
 
 class InteractiveChargeParticle extends ChargedParticle {
     //This class is a simple particle with velocity, position and acceleration.
     constructor(drawableVector, accelerationVector, charge = 0, spawnOnTheOtherSide = true) {
-        super(drawableVector.offset, drawableVector.vector.copy().mult(conversionFactors.velocity), accelerationVector.vector.copy().mult(conversionFactors.accelaration), charge);
+        super(drawableVector.offset, drawableVector.vector.copy().mult(conversionFactors.velocity), accelerationVector.vector.copy().mult(conversionFactors.acceleration), charge);
         this.drawableVector = drawableVector;
         this.accelerationVector = accelerationVector;
         this.spawnOnTheOtherSide = spawnOnTheOtherSide;
@@ -38,7 +38,7 @@ class InteractiveChargeParticle extends ChargedParticle {
         //Update the position with the user input
         this.position = this.drawableVector.offset;
         this.velocity = this.drawableVector.vector.copy().mult(conversionFactors.velocity);
-        this.accelaration = this.accelerationVector.vector.copy().mult(conversionFactors.accelaration);
+        this.acceleration = this.accelerationVector.vector.copy().mult(conversionFactors.acceleration);
     }
     runningUpdate() {
         //Update the drawable vector with the current status from simulation
@@ -48,7 +48,7 @@ class InteractiveChargeParticle extends ChargedParticle {
         }
 
         this.drawableVector.vector = this.velocity.copy().mult(1 / conversionFactors.velocity);
-        this.accelaration.vector = this.accelaration.copy().mult(1 / conversionFactors.accelaration);
+        this.accelerationVector.vector = this.readAcc.copy().mult(1 / conversionFactors.acceleration);
     }
     draw() {
         //Draw the particle and the vectors on the screen
